@@ -1,11 +1,9 @@
 import cv2
 import face_recognition
 import pyttsx3
-import webbrowser
 import speech_recognition as sr
 import sys
 
-# Function to load and encode image
 def load_and_encode_image(image_path):
     img = face_recognition.load_image_file(image_path)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -18,7 +16,6 @@ def load_and_encode_image(image_path):
         print(f"No faces found in image: {image_path}")
         return img, None
 
-# Function to capture voice input
 def get_voice_input(prompt):
     recognizer = sr.Recognizer()
     with sr.Microphone() as source:
@@ -34,7 +31,6 @@ def get_voice_input(prompt):
             print("Could not request results; check your network connection.")
             return None
 
-# Function to recognize person in webcam frame and handle LinkedIn prompt
 def recognize_person(frame, known_encodings, names, engine, last_detected):
     face_locs = face_recognition.face_locations(frame)
     print(f"Detected {len(face_locs)} faces in the frame.")
@@ -53,63 +49,53 @@ def recognize_person(frame, known_encodings, names, engine, last_detected):
                     counts[name] = counts.get(name, 0) + 1
                 name = max(counts, key=counts.get)
 
-                # Display details in console for the first time detection
                 if name != last_detected[0]:
-                    last_detected[0] = name  # Update last detected name
+                    last_detected[0] = name
                     details = {
                         "Muskan": {
                             "Name": "MUSKAN SHAMA",
                             "Designation": "ASSISTANT PROFESSOR",
                             "Department": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE",
-                            "LinkedIn": "https://www.linkedin.com/in/muskan-shama-152561291/"
                         },
                         "Alfiya": {
                             "Name": "ALFIYA JAVEED",
                             "Designation": "ASSISTANT PROFESSOR",
                             "Department": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE",
-                            "LinkedIn": "https://www.linkedin.com/in/alfiya-javeed-b4082b224/"
                         },
                         "Girish": {
                             "Name": "Dr. Girish L",
                             "Designation": "H O D & Associate Professor",
                             "Department": "Artificial Intelligence & Data Science",
-                            "LinkedIn": "https://www.linkedin.com/in/dr-girish-l-87859a23a/"
                         },
                         "Kotramma": {
                             "Name": "KOTRAMMA MATHADA",
                             "Designation": "Assistant Professor",
                             "Department": "Artificial Intelligence and Data Science",
-                            "LinkedIn": "https://www.linkedin.com/in/kotramma-mathada-4b296b9b"
                         },
                         "Shruthi": {
                             "Name": "SHRUTHI S",
                             "Designation": "Assistant Professor",
                             "Department": "Artificial Intelligence & Data Science",
-                            "LinkedIn": None
                         },
                         "Anand": {
                             "Name": "S KRISHNA ANAND",
                             "Designation": "PROFESSOR",
                             "Department": "ARTIFICIAL INTELLIGENCE AND DATA SCIENCE",
-                            "LinkedIn": "https://www.linkedin.com/in/s-krishna-anand-1a924717/"
                         },
                         "Rekha": {
                             "Name": "Dr. REKHA H",
                             "Designation": "Professor & H O D",
                             "Department": "Information Science and Engineering",
-                            "LinkedIn": None
                         },
                         "Basavesh": {
                             "Name": "Dr.Basavesha D",
                             "Designation": "Associate Professor & H O D",
                             "Department": "Computer Science and Technology",
-                            "LinkedIn": None
                         },
                         "Princi": {
                             "Name": "Dr m vishwanath",
                             "Designation": "Principal of SIET",
-                            "Department" : "Mechanical Engineering",
-                            "LinkedIn": None,
+                            "Department": "Mechanical Engineering",
                             "Message": "Our principal's message: At SIET, we believe in embracing challenges as opportunities for growth and success. Our institution fosters a culture of dedication and resilience, empowering students to overcome life’s obstacles and pursue their dreams with confidence and grace. We invite all students and faculty to join us in this transformative journey of exploration and enlightenment."
                         },
                     }
@@ -119,33 +105,14 @@ def recognize_person(frame, known_encodings, names, engine, last_detected):
                         print(f"\nNAME: {detail['Name']}")
                         print(f"Designation: {detail.get('Designation', 'Not available')}")
                         print(f"Department: {detail.get('Department', 'Not available')}")
-                        if detail['LinkedIn']:
-                            print(f"LinkedIn: {detail['LinkedIn']}")
-                        else:
-                            print("LinkedIn: Not available")
                         if 'Message' in detail:
                             print(f"\nMessage from Principal:")
                             print(detail['Message'])
 
-                        # Speak out the details
                         engine.say(f"Name: {detail['Name']}. Designation: {detail.get('Designation', 'Not available')}. Department: {detail.get('Department', 'Not available')}.")
                         if 'Message' in detail:
                             engine.say(detail['Message'])
                         engine.runAndWait()
-
-                        # Ask if user wants to visit LinkedIn profile
-                        if detail['LinkedIn']:
-                            engine.say(f"Would you like to visit {detail['Name']}'s LinkedIn profile?")
-                            engine.runAndWait()
-                            voice_response = get_voice_input("Would you like to visit the LinkedIn profile? (yes/no): ")
-                            if voice_response is not None:
-                                response = voice_response.strip().lower()
-                                print(f"User response: {response}")
-                                if "yes" in response:
-                                    webbrowser.open(detail['LinkedIn'])
-                            else:
-                                engine.say("It appears the detected person may not have a LinkedIn profile.")
-                                engine.runAndWait()
 
             for (top, right, bottom, left) in face_locs:
                 cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
@@ -154,7 +121,6 @@ def recognize_person(frame, known_encodings, names, engine, last_detected):
                 detected_name = name
     return frame
 
-# Load and encode images for each person
 def load_encode_all():
     images = {
         "Muskan": "C:\\project\\imagesbasic\\muskan.png",
@@ -176,7 +142,6 @@ def load_encode_all():
             names.append(name)
     return known_encodings, names
 
-# Main function to perform face recognition
 def main():
     engine = pyttsx3.init()
     engine.setProperty('rate', 150)
@@ -184,21 +149,18 @@ def main():
     known_encodings, names = load_encode_all()
     print(f"Loaded encodings for: {names}")
 
-    cap = cv2.VideoCapture(0)  # 0 for default webcam
-    last_detected = [None]  # Variable to store last detected name
+    cap = cv2.VideoCapture(0)
+    last_detected = [None]
 
     while True:
-        # Prompt user for detection permission before each detection cycle
         engine.say("Do you want to detect? Please say 'detect' or 'start detection' to begin.")
         engine.runAndWait()
 
-        # Get voice response
         voice_response = get_voice_input("Say 'detect' or 'start detection' to begin or 'quit' to exit: ")
-        
+
         if voice_response:
             voice_response = voice_response.lower()
 
-            # Check for detection start
             if 'detect' in voice_response or 'start detection' in voice_response:
                 ret, frame = cap.read()
                 if not ret:
@@ -208,10 +170,9 @@ def main():
                 frame = recognize_person(frame, known_encodings, names, engine, last_detected)
                 cv2.imshow('Webcam Face Recognition', frame)
 
-                # Prompt before exit
                 engine.say("Want to dive into more detections? I’m your vision buddy!")
                 engine.runAndWait()
-                break  # Exit the loop after speaking
+                break
 
             elif 'quit' in voice_response:
                 break
@@ -219,10 +180,8 @@ def main():
                 print("Invalid command. Please say 'detect', 'start detection', or 'quit'.")
 
         else:
-            # Fallback to text input if voice response is not recognized
             text_response = input("Type 'detect' to start detection or 'quit' to exit: ").strip().lower()
 
-            # Check for detection start
             if 'detect' in text_response or 'start detection' in text_response:
                 ret, frame = cap.read()
                 if not ret:
@@ -232,10 +191,9 @@ def main():
                 frame = recognize_person(frame, known_encodings, names, engine, last_detected)
                 cv2.imshow('Webcam Face Recognition', frame)
 
-                # Prompt before exit
                 engine.say("Want more? Just give me a shout!")
                 engine.runAndWait()
-                break  # Exit the loop after speaking
+                break
 
             elif 'quit' in text_response:
                 break
@@ -249,7 +207,7 @@ def main():
     cv2.destroyAllWindows()
     engine.say("Want more? Just give me a shout!")
     engine.runAndWait()
-    sys.exit()  # Terminate the script
+    sys.exit()
 
 if __name__ == "__main__":
     main()
