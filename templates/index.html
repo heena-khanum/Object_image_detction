@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detection Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="background-image"></div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="#" class="nav-button">Home</a></li>
+            <li><a href="#about" class="nav-button">About</a></li>
+            <li><a href="services.html" class="nav-button">Services</a></li>
+            <li><a href="#" class="nav-button">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="slider">
+        <div class="slide active" id="home">
+            <div class="container">
+                <h1>Welcome to Detection Services</h1>
+                <p class="intro-text">Discover the power of advanced detection technologies. Choose one of the options below to begin your journey:</p>
+                <div class="button-container">
+                    <button id="objectDetectionButton" class="btn btn-object">Object Detection</button>
+                    <button id="imageDetectionButton" class="btn btn-image">Image Detection</button>
+                </div>
+            </div>
+        </div>
+        <div class="slide" id="liveDetection">
+            <div class="container">
+                <h2 id="detectionTitle">Live Detection</h2>
+                <div id="video-container" class="video-container">
+                    <video id="video" autoplay></video>
+                    <video id="backgroundVideo" autoplay loop muted class="hidden">
+                        <source src="myVideo.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div id="loader" class="loader hidden"></div>
+                    <p id="detectingMessage" class="hidden">Detecting object...</p>
+                </div>
+                <div class="search-container">
+                    <button id="runButton" class="btn-search">Start Detection</button>
+                    <button id="stopButton" class="btn-search hidden">Stop Detection</button>
+                    <button id="backButton" class="btn btn-back">Back</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>About Detection Technologies</h2>
+            <p>Detection services leverage cutting-edge AI and machine learning technologies to identify and analyze objects and images with high accuracy and speed. Object detection algorithms can recognize a wide range of items in various environments, from everyday objects to complex scenes. Image detection focuses on identifying and processing visual information to understand and categorize images based on predefined criteria. These technologies are used in various applications, including security systems, automated surveillance, and image analysis for various industries.</p>
+            <h2>Object Detection</h2>
+            <p>Object Detection involves identifying objects within an image and classifying them into predefined categories. It combines multiple computer vision tasks such as image classification and object localization to pinpoint and classify objects. This technology is widely used in autonomous vehicles, security systems, and augmented reality applications.</p>
+            <h2>Image Detection</h2>
+            <p>Image Detection, often referred to as facial recognition or face detection, focuses on identifying and analyzing faces within images. It leverages deep learning algorithms to recognize facial features and match them against databases. This technology is used in various applications, including security, marketing, and personalized user experiences.</p>
+            <p>With continuous advancements in AI and ML, the accuracy and efficiency of these detection technologies are rapidly improving, leading to new possibilities and innovations across different domains.</p>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,318 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Lobster&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    overflow: hidden;
+    color: #fff;
+    text-shadow: 2px 2px 4px #000;
+    background-color: #f0f0f0; /* Light background color for better visibility */
+}
+
+/* Background Image */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('background.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    filter: brightness(1.5); /* Increased brightness */
+}
+
+/* Navigation Bar */
+.navbar {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar li {
+    margin: 0 15px;
+}
+
+.navbar a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    color: #ddd; /* Default color */
+    transition: color 0.3s, box-shadow 0.3s, background-color 0.3s;
+    border-radius: 5px;
+    background-color: #403a3a; /* Default background color */
+}
+
+.navbar a:hover {
+    color: #FFD700;
+    background-color: #444; /* Darker background on hover */
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 30px #FFD700, 0 0 40px #FFD700;
+}
+
+/* Slider Styles */
+.slider {
+    display: flex;
+    width: 100%;
+    transition: transform 0.5s ease-in-out;
+    margin-top: 60px; /* Adjusted for the navbar */
+}
+
+.slide {
+    width: 100%;
+    height: calc(100vh - 60px); /* Adjusted for navbar height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.3); /* Slightly less dark */
+    flex-shrink: 0;
+}
+
+.container {
+    text-align: center;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    max-width: 800px;
+    margin: 20px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+h1, h2 {
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    letter-spacing: 2px;
+    animation: fadeIn 2s;
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+    color: #ffe600; /* Stylish font color */
+}
+
+h2 {
+    font-family: 'Roboto', sans-serif;
+    color: #ffff00; /* Stylish font color */
+}
+
+.intro-text {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.search-input {
+    padding: 15px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: none;
+    width: 300px;
+    display: none; /* Initially hidden */
+}
+
+/* Button Styles */
+.btn, .btn-mic, .btn-search, .btn-back {
+    padding: 15px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, color 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+
+.btn:hover, .btn-mic:hover, .btn-search:hover, .btn-back:hover {
+    transform: scale(1.1);
+    color: #fff;
+    box-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #fff; /* Shining effect */
+}
+
+.btn-object {
+    background: #FF5733;
+}
+
+.btn-object:hover {
+    background: #C70039;
+}
+
+.btn-image {
+    background: #ffffff;
+}
+
+.btn-image:hover {
+    background: #e3e6e9;
+}
+
+.btn-mic {
+    background: #FF5733;
+}
+
+.btn-mic:hover {
+    background: #C70039;
+}
+
+.btn-search {
+    background: #e2e6e8;
+}
+
+.btn-search:hover {
+    background: #eff1f3;
+}
+
+.btn-back {
+    background: #ffffff;
+    margin-top: 20px;
+}
+
+.btn-back:hover {
+    background: #e6e8e9;
+}
+
+/* Video Container */
+.video-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+video {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    color: #7c6e6e;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    max-width: 800px;
+    position: relative;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #FF5733; /* Stylish font color for modal heading */
+    font-family: 'Lobster', cursive; /* Stylish font family */
+}
+
+.modal-content p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #FF5733; /* Close button color */
+}
+
+.close:hover {
+    color: #C70039; /* Close button hover color */
+}
+
+.hidden {
+    display: none;
+}
+
+
+/* Make sure to add this for the background video */
+#backgroundVideo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    display: none; /* Hide initially */
+}
+
+/* Make sure the video container takes full size */
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+#video {
+    width: 50%;  /* Adjust the width as needed */
+    height: 50%; /* Adjust the height as needed */
+    max-width: 400px;  /* Adjust as needed */
+    max-height: 300px; /* Adjust as needed */
+    margin: 0 auto; /* Center the video */
+    display: block;
+}
+
+#detectingMessage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: white;
+}
+
+
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

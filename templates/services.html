@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Detection Services</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="background-image"></div>
+
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" class="nav-button">Home</a></li>
+            <li><a href="index.html#about" class="nav-button">About</a></li>
+            <li><a href="services.html" class="nav-button">Services</a></li>
+            <li><a href="index.html#contact" class="nav-button">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>Our Services</h1>
+        <p class="intro-text">Explore our range of advanced detection services tailored to meet your needs:</p>
+
+        <div class="service-container">
+            <div class="service">
+                <h2>Object Detection</h2>
+                <p>Our Object Detection service utilizes state-of-the-art AI and machine learning technologies to accurately identify and classify objects in various environments. Whether it's for security, surveillance, or other applications, our solutions are designed to provide reliable and efficient object detection.</p>
+                <button id="objectDetectionButton" class="btn btn-object">Start Object Detection</button>
+            </div>
+
+            <div class="service">
+                <h2>Image Detection</h2>
+                <p>Our Image Detection service focuses on facial recognition and image analysis. Leveraging deep learning algorithms, we can accurately identify and analyze facial features, making our service ideal for security systems, marketing applications, and personalized user experiences.</p>
+                <button id="imageDetectionButton" class="btn btn-image">Start Image Detection</button>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <button id="backButton" class="btn btn-back">Back to Home</button>
+        </div>
+    </div>
+
+    <div class="modal hidden">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>About Our Services</h2>
+            <p>We leverage cutting-edge AI and machine learning technologies to offer a range of detection services. Our Object Detection service can identify and classify objects in various environments with high accuracy and speed. Our Image Detection service focuses on facial recognition and image analysis, providing reliable and efficient solutions for a variety of applications.</p>
+        </div>
+    </div>
+
+</body>
+</html>
