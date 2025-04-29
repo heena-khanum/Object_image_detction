@@ -5,6 +5,14 @@ Welcome to the ultimate AI-powered Image Recognition system — it not only dete
 📸 Sample Input Image
 This is what the system sees 👇
 
+
+
+![image](https://github.com/user-attachments/assets/60884018-5d53-43cd-af82-b358b7640ef0)
+
+
+
+
+
 <img src="images/input_sample.jpg" width="400"/>
 🧑‍💻 Recognized Person Output
 And here's what it guesses... with 98% confidence 😎
