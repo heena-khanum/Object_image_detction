@@ -67,4 +67,4 @@ You can even prank your friends by making the bot say funny things when it detec
 📬 Contact
 For collab, coffee, or cool AI talks:
 📧 heenakhanum2004@gmail.com
-📍 Sridevi Institute of Engineering College
+📍 Shridevi Institute of Engineering College
